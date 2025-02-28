@@ -321,6 +321,7 @@ void Weapon::Shotting(SDL_Renderer *renderer){
         break;
     }
     BaseWeaponRender(renderer);
+    BomboClatWeaponRender(renderer);
 
 }
 
