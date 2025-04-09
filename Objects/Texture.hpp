@@ -1,6 +1,6 @@
 #include<iostream>
-#include<SDL2/SDL.h>
-#include<SDL2/SDL_image.h>
+#include"../SDL/include/SDL2/SDL.h"
+#include"../SDL/include/SDL2/SDL_image.h"
 
 SDL_Texture* TextureLoad(const char *filename,SDL_Renderer *renderer){
     SDL_Surface *surface = IMG_Load(filename);

@@ -1,7 +1,7 @@
 #pragma once
 
 #include<iostream>
-#include<SDL2/SDL.h>
+#include"SDL/include/SDL2/SDL.h"
 #include<vector>
 #include"MazeSize.hpp"
 
