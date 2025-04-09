@@ -31,7 +31,7 @@ kill yourself safe :DD
 #include<iostream>
 #include<random>
 
-#include"SDL/include/SDL2/SDL.h"
+#include"../../SDL/include/SDL2/SDL.h"
 #include"Bullet.hpp"
 #include"WeaponIcon.hpp"
 

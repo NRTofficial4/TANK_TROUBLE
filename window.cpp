@@ -4,20 +4,19 @@ Posible solution:
 1) - Optymalization -> only chceking all walls in the cell when player is currnetly at
 2) kill yourself*/
 
-#pragma once;
+#pragma once
 #include<iostream>
 
 #include"SDL/include/SDL2/SDL.h"
 
+#include"SDL/include/SDL2/SDL_mixer.h"
 #include"SDL/include/SDL2/SDL_ttf.h"
-#include<SDL2/SDL_ttf.h>
-#include<SDL2/SDL_mixer.h>
 
 #include"Map/CellInit.cpp"
 #include"Map/MazeInit.cpp"
 #include"Objects/Player/Player.cpp"
 #include"Objects/Text/text.cpp"
-#include"Objects/DigitalEnemy/DigitalEnemy.cpp"
+
 
 #define WIN_HEIGH 1080
 #define WIN_WIDTH 1920
@@ -39,8 +38,6 @@ Text text_blue("free.ttf",0,-20);
 Text text_green("free.ttf",WIN_WIDTH/2-80,-20);
 
 Weapon IconWeapnos;
-
-DigitalEnemy enemy;
 
 /*Bruh i know randomnes is as darkess in my ass--------------------------------------------*/
 std::random_device rd2;

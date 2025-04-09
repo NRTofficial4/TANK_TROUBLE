@@ -1,4 +1,4 @@
-#include<SDL2/SDL.h>
+#include"../../SDL/include/SDL2/SDL.h"
 #include<vector>
 
 class WeaponIcon{

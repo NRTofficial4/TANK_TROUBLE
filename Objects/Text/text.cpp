@@ -75,7 +75,7 @@ void Text::TextRendering(SDL_Renderer *renderer){
 
     /*animatinos*/
     angle += 4;
-    rect.y = StaticPos_Y + 10*sin(RAD(angle));
+    rect.y = StaticPos_Y + 10*sin(2*3.14*angle/180);
     if(angle == 360) angle == 0;
 }
 

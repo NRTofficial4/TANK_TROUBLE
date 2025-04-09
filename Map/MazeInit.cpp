@@ -8,7 +8,7 @@ New Algorythm :
 
 #include<iostream>
 #include<vector>
-#include"SDL/include/SDL2/SDL.h"
+#include"../SDL/include/SDL2/SDL.h"
 #include<random>
 
 #include"CellInit.cpp"

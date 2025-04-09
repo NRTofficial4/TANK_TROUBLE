@@ -18,8 +18,6 @@ Weapons whichc are basically just rectangle,but positioned perfect--*/
 // #include"../Weapons/MachineGun.cpp"
 //#include"../Weapons/TheMin.cpp"
 
-//Im fucking stupid
-#define RAD(x) (x * M_PI / 180)
 #define DEGREES(x) (x*180)/M_PI;
 
 #define TANKSPEED 4
