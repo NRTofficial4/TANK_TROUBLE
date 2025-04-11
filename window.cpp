@@ -163,7 +163,7 @@ void Window::WindowInit(){
     TTF_Init();
     if(TTF_Init() == -1) std::cout << "FATAL ERROR SDL not initialized!" << TTF_GetError() <<"\n";
 
-    window = SDL_CreateWindow("RandomMaze",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,WIN_WIDTH,WIN_HEIGH,SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow("TANK_TROUBLE",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,WIN_WIDTH,WIN_HEIGH,SDL_WINDOW_RESIZABLE);
     renderer = SDL_CreateRenderer(window,0,0);
     running = true;
 
