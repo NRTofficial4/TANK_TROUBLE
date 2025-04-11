@@ -29,6 +29,7 @@ void Window::SoundEffect(){
     PLayerKys = Mix_LoadWAV("Sound/dead.wav");
     BaseWallSound = Mix_LoadWAV("Sound/Bonce.wav");
     MiniGunWallSound = Mix_LoadWAV("Sound/MiniGunWallSound.wav");
+    backroundmusic = Mix_LoadMUS("Sound/ts_backround.wav");
 
 /*------- M I X E R ------------ M I X E R --------- M I X E R ----------- M I X E R ----- M I X E R -------*/
     Mix_Volume(0,50);
@@ -37,7 +38,12 @@ void Window::SoundEffect(){
     Mix_Volume(4,30);
     Mix_Volume(6,30);
     Mix_Volume(7,128);
+    Mix_VolumeMusic(100);
 
     tank_blue.SoundLoad();
     tank_red.SoundLoad();
+}
+
+void Window::PlayBackroundMusic(){
+    if(Mix_PlayingMusic() == 0) Mix_PlayMusic(backroundmusic,-1);
 }

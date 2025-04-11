@@ -4,18 +4,19 @@ Posible solution:
 1) - Optymalization -> only chceking all walls in the cell when player is currnetly at
 2) kill yourself*/
 
-#pragma once;
+#pragma once
 #include<iostream>
 
-#include<SDL2/SDL.h>
-#include<SDL2/SDL_ttf.h>
-#include<SDL2/SDL_mixer.h>
+#include"SDL/include/SDL2/SDL.h"
+
+#include"SDL/include/SDL2/SDL_mixer.h"
+#include"SDL/include/SDL2/SDL_ttf.h"
 
 #include"Map/CellInit.cpp"
 #include"Map/MazeInit.cpp"
 #include"Objects/Player/Player.cpp"
 #include"Objects/Text/text.cpp"
-#include"Objects/DigitalEnemy/DigitalEnemy.cpp"
+
 
 #define WIN_HEIGH 1080
 #define WIN_WIDTH 1920
@@ -32,13 +33,11 @@ Tank tank_green(TANK_W,TANK_H);
 
 Maze maze;
 
-Text text_red("free.ttf",1740,-20);
-Text text_blue("free.ttf",0,-20);
-Text text_green("free.ttf",WIN_WIDTH/2-80,-20);
+Text text_red("fonts/free.ttf",1740,-20);
+Text text_blue("fonts/free.ttf",0,-20);
+Text text_green("fonts/free.ttf",WIN_WIDTH/2-80,-20);
 
 Weapon IconWeapnos;
-
-DigitalEnemy enemy;
 
 /*Bruh i know randomnes is as darkess in my ass--------------------------------------------*/
 std::random_device rd2;
@@ -46,7 +45,6 @@ std::mt19937 gen2(rd2());
 std::uniform_int_distribution<>distrib2(0,CELL_NUMBER_HEIGH*CELL_NUMBER_HEIGH -1);
 //Number From 0 - 100 % 
 std::uniform_int_distribution<>CritChance(0,100);
-
 
 class Window{
 
@@ -56,6 +54,7 @@ class Window{
     SDL_Window*window;
     SDL_Renderer *renderer;
     SDL_Event event;
+    Mix_Music *backroundmusic;
     Mix_Chunk *EndRundSound;
     Mix_Chunk *PLayerKys;
     Mix_Chunk *DrawMusic;
@@ -105,6 +104,9 @@ class Window{
 
     /*Keepeing Framing - 60FPS defaults*/
     void FrameOptymalisation();
+    
+    /*playing music in the backround*/
+    void PlayBackroundMusic(); 
 
     private:
 
@@ -153,15 +155,15 @@ class Window{
 void Window::WindowInit(){
 
     SDL_Init(SDL_INIT_VIDEO);
-    if(SDL_Init(SDL_INIT_VIDEO) < 0) std::cout << "FATAL ERROR we are FUCKED" << SDL_GetError() <<"\n";
+    if(SDL_Init(SDL_INIT_VIDEO) < 0) std::cout << "FATAL ERROR SDL not initialized!" << SDL_GetError() <<"\n";
 
     SDL_Init(SDL_INIT_AUDIO);
-    if(SDL_Init(SDL_INIT_AUDIO) < 0) std::cout << "FATAL ERROR we are FUCKED" << SDL_GetError() <<"\n";
+    if(SDL_Init(SDL_INIT_AUDIO) < 0) std::cout << "FATAL ERROR SDL not initialized!" << SDL_GetError() <<"\n";
 
     TTF_Init();
-    if(TTF_Init() == -1) std::cout << "FATAL ERROR we are FUCKED" << TTF_GetError() <<"\n";
+    if(TTF_Init() == -1) std::cout << "FATAL ERROR SDL not initialized!" << TTF_GetError() <<"\n";
 
-    window = SDL_CreateWindow("RandomMaze",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,WIN_WIDTH,WIN_HEIGH,SDL_WINDOW_OPENGL);
+    window = SDL_CreateWindow("RandomMaze",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,WIN_WIDTH,WIN_HEIGH,SDL_WINDOW_RESIZABLE);
     renderer = SDL_CreateRenderer(window,0,0);
     running = true;
 

@@ -1,7 +1,9 @@
 #include<iostream>
 
-#include<SDL2/SDL.h>
-#include<SDL2/SDL_ttf.h>
+#include"../../SDL/include/SDL2/SDL.h"
+#include"../../SDL/include/SDL2/SDL_image.h"
+#include"../../SDL/include/SDL2/SDL_ttf.h"
+
 #include<string>
 
 class Text{
@@ -73,7 +75,7 @@ void Text::TextRendering(SDL_Renderer *renderer){
 
     /*animatinos*/
     angle += 4;
-    rect.y = StaticPos_Y + 10*sin(RAD(angle));
+    rect.y = StaticPos_Y + 10*sin(2*3.14*angle/180);
     if(angle == 360) angle == 0;
 }
 
