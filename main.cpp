@@ -12,6 +12,7 @@ int main(){
     window.WindowInit();
     while(window.running){
         window.endrund = false;
+        window.PlayBackroundMusic();
         window.FrameStart = SDL_GetTicks();
         window.Events();
         window.Render();

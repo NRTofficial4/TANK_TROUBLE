@@ -33,9 +33,9 @@ Tank tank_green(TANK_W,TANK_H);
 
 Maze maze;
 
-Text text_red("free.ttf",1740,-20);
-Text text_blue("free.ttf",0,-20);
-Text text_green("free.ttf",WIN_WIDTH/2-80,-20);
+Text text_red("fonts/free.ttf",1740,-20);
+Text text_blue("fonts/free.ttf",0,-20);
+Text text_green("fonts/free.ttf",WIN_WIDTH/2-80,-20);
 
 Weapon IconWeapnos;
 
@@ -46,7 +46,6 @@ std::uniform_int_distribution<>distrib2(0,CELL_NUMBER_HEIGH*CELL_NUMBER_HEIGH -1
 //Number From 0 - 100 % 
 std::uniform_int_distribution<>CritChance(0,100);
 
-
 class Window{
 
     public:
@@ -55,6 +54,7 @@ class Window{
     SDL_Window*window;
     SDL_Renderer *renderer;
     SDL_Event event;
+    Mix_Music *backroundmusic;
     Mix_Chunk *EndRundSound;
     Mix_Chunk *PLayerKys;
     Mix_Chunk *DrawMusic;
@@ -104,6 +104,9 @@ class Window{
 
     /*Keepeing Framing - 60FPS defaults*/
     void FrameOptymalisation();
+    
+    /*playing music in the backround*/
+    void PlayBackroundMusic(); 
 
     private:
 
