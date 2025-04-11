@@ -152,15 +152,15 @@ class Window{
 void Window::WindowInit(){
 
     SDL_Init(SDL_INIT_VIDEO);
-    if(SDL_Init(SDL_INIT_VIDEO) < 0) std::cout << "FATAL ERROR we are FUCKED" << SDL_GetError() <<"\n";
+    if(SDL_Init(SDL_INIT_VIDEO) < 0) std::cout << "FATAL ERROR SDL not initialized!" << SDL_GetError() <<"\n";
 
     SDL_Init(SDL_INIT_AUDIO);
-    if(SDL_Init(SDL_INIT_AUDIO) < 0) std::cout << "FATAL ERROR we are FUCKED" << SDL_GetError() <<"\n";
+    if(SDL_Init(SDL_INIT_AUDIO) < 0) std::cout << "FATAL ERROR SDL not initialized!" << SDL_GetError() <<"\n";
 
     TTF_Init();
-    if(TTF_Init() == -1) std::cout << "FATAL ERROR we are FUCKED" << TTF_GetError() <<"\n";
+    if(TTF_Init() == -1) std::cout << "FATAL ERROR SDL not initialized!" << TTF_GetError() <<"\n";
 
-    window = SDL_CreateWindow("RandomMaze",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,WIN_WIDTH,WIN_HEIGH,SDL_WINDOW_OPENGL);
+    window = SDL_CreateWindow("RandomMaze",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,WIN_WIDTH,WIN_HEIGH,SDL_WINDOW_RESIZABLE);
     renderer = SDL_CreateRenderer(window,0,0);
     running = true;
 

@@ -1,6 +1,5 @@
 #include"Weapon.cpp"
 
-/*Bruh i know randomnes is as darkess in my ass--------------------------------------------*/
 std::random_device rdMachineGUn;
 std::mt19937 gen_machine(rdMachineGUn());
 

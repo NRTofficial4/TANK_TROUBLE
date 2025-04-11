@@ -15,7 +15,7 @@ Weapons whichc are basically just rectangle,but positioned perfect--*/
 
 #include"../Weapons/Weapon.cpp"  
 #include"../Weapons/BomboClat.cpp"
-// #include"../Weapons/MachineGun.cpp"
+#include"../Weapons/MachineGun.cpp"
 //#include"../Weapons/TheMin.cpp"
 
 #define DEGREES(x) (x*180)/M_PI;
