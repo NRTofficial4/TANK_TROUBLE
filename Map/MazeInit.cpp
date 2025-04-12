@@ -1,9 +1,3 @@
-/*TO DO:
-New Algorythm :
-1 Chose Random Cell
-2 In Random direction remove one or 2  walls with respect to neibors of the Cell 
-3 repeat till  all Cells are visited ------------------*/
-
 #pragma once
 
 #include<iostream>
@@ -122,11 +116,6 @@ int index = 0;
     }
     MazeMake();
 }
-
-/*We can just build a walls easili here ----- *_* ----*/
-/*ok so Walls are overlapping, but some no, becouse there is no neibor (fr cell on edges) ,so
-solution 1 -> check which wall is overlapping and remove it -> too hard, nah not worth it ----------------------
-solution 2 -> build more walls for the cells in neibor -> nice easy solution, we get this ----------------------*/
 
 void Maze::MazeMake(){
     /*generate index list of neiborhood of every Cell*/
@@ -261,18 +250,10 @@ void Maze::MazeInit()
 
 for(int i=0;i<1;i++){
 
-    // IterLeft = MAZE_CELL_NUMBER;
     int randomness = distrib(rd);
     iter = distrib(rd)*randomness*10;
 
     while(true){
-
-        // RandomIter = RandomPathGenerator(rd);
-        // if(Current_cell.size() > 4){
-        //     for(int i=0;i<2;i++){
-        //         if(RandomIter == 2) Current_cell.pop_back();
-        //     }
-        // }
 
         if(!cell[iter].visited){
             cell[iter].visited = true;
@@ -284,7 +265,6 @@ for(int i=0;i<1;i++){
         }
         else{
             //check if every neibor has been checked;
-            //wtf is this std::next XD
             Current_cell.back().N.erase(std::next(Current_cell.back().N.begin(),m));
             if(Current_cell.back().N.empty()){
                 Current_cell.pop_back();
@@ -299,15 +279,10 @@ for(int i=0;i<1;i++){
 
     }
 
-    for(auto& c:cell){
-        c.visited = false;
-    }
-
+    for(auto& c:cell) c.visited = false;
 }
 
-    for(auto& c:cell){
-        c.WallMake();
-    }
+    for(auto& c:cell) c.WallMake();
 
     std::cout << "WALL SUCCESFULLY CREATED!\n";
 }
@@ -357,7 +332,6 @@ void Maze::MazeDestroyWall(){
 }
 
 int IterAdjust(int x){
-    
     switch (x)
     {
     case 4:
@@ -369,6 +343,5 @@ int IterAdjust(int x){
         return x;
         break;
     }
-
 }
 

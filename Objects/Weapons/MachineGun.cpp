@@ -6,7 +6,6 @@ std::mt19937 gen_machine(rdMachineGUn());
 /*We used random distribution to generate bullet with difrient ammount of angle to*/
 std::uniform_int_distribution<>MachineGunAngleDistrib(-15,15);
 
-
 void Weapon::MachineWeaponShot(){
 
     MiniGun.x = center.x - rect.h*sin(RAD(-angle))/2;
@@ -25,7 +24,7 @@ if(MiniGunBullets.size() <= Ammo && MachineBulletTime.frames == 4){
     MiniGunBullets.push_back(MiniGun);
     MachineBulletTime.frames = 0;
     OneAppleaDayKeepsTheDoctorAway = 10;
-    //LengthWeapon = 5;
+
 }
 
 if(MiniGunBullets.size() == Ammo) {

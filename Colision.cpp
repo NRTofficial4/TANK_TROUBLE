@@ -3,7 +3,7 @@
 #include"window.cpp"
 
 //Tank 1-tank that is shotting
-//Tank 2-Innocent Peaple
+//Tank 2 tank that gets shot
 
 
 void Window::Mining(){
@@ -99,35 +99,26 @@ for(int iter=0;iter<tank1.weapon.MainBullet[index].Minions.size();iter++){
 }
 }
 /*MiniGUn Weapon-----------------------------*/
-//Minigun dont kill the shotter becouse it will make game unbalance lol 
+//Minigun dont kill the shotter becouse it will make game unbalance (propably)
 case 2:
 
     if(!tank1.weapon.MiniGunBullets.empty()){
         for(int index =0; index < tank1.weapon.MiniGunBullets.size();index++){
             if(!tank2.Killed) tank2.ProjectionColision(tank1.weapon.MiniGunBullets[index].rect);
 
-        if(!tank2.Killed){   
-            if(tank2.Colided){
-                Mix_PlayChannel(7,tank2.HitMusic,0);
-                tank1.weapon.MiniGunBullets.erase(tank1.weapon.MiniGunBullets.begin()+index);
+            if(!tank2.Killed){   
+                if(tank2.Colided){
+                    Mix_PlayChannel(7,tank2.HitMusic,0);
+                    tank1.weapon.MiniGunBullets.erase(tank1.weapon.MiniGunBullets.begin()+index);
 
-                if(CritChance(rd) <= tank1.weapon.CritRate) tank2.Health = tank2.Health - 3*tank1.weapon.Damage;
-                else tank2.Health = tank2.Health - tank1.weapon.Damage;
+                    if(CritChance(rd) <= tank1.weapon.CritRate) tank2.Health = tank2.Health - 3*tank1.weapon.Damage;
+                    else tank2.Health = tank2.Health - tank1.weapon.Damage;
 
-                if(tank2.Health <= 0){
-                    tank2.Killed = true;
-                    tank2.Colided = false;
+                    if(tank2.Health <= 0){
+                        tank2.Killed = true;
+                        tank2.Colided = false;
+                    }
                 }
-            }
-        }
-        if(tank1.Colided){
-            tank1.weapon.MiniGunBullets.erase(tank1.weapon.MiniGunBullets.begin()+index);
-            tank1.Health = tank1.Health - tank1.weapon.Damage;
-            if(tank1.Health <= 0){
-            tank1.Killed = true;
-            tank1.Colided = false;
-            Mix_PlayChannel(6,PLayerKys,0);
-            }
         }
         }
     }

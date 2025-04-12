@@ -1,21 +1,9 @@
 #include<iostream>
+#include<vector>
 #include"../../SDL/include/SDL2/SDL.h"
 #include"../../SDL/include/SDL2/SDL_image.h"
 #include"../../SDL/include/SDL2/SDL_mixer.h"
-#include<vector>
 
-/*IDEA OF SHOOTING
-PLayer have 5 bullets
-each Bullet Colide with the wall and with the  other player
-The bullet can kill it shoter  
-
-TO DO:
- function to colide with walls, (figure out how the angle is gonna change) (skull emoji)
- to do that, use the SAT but on circle, so should be eaasier 
- kill yourself
- function to track the time when was the last time the bullet was shoted
- make each bullet disapear after like 10 second 
- Load Textures*/
 
 #define RAD3(x) (x * M_PI / 180)
 
@@ -172,10 +160,6 @@ void Bullet::AdjustVelocity(){
     }
     if(Direct.x < Direct.y) direction.x = -direction.x;
     if(Direct.x > Direct.y) direction.y = -direction.y;
-
-    // if(SideColide[0]) direction.x = -direction.x;
-    // if(SideColide[1]) direction.y = -direction.y;
-
 }
 
 Bullet::Bullet(int w, int h){
@@ -188,8 +172,6 @@ void Bullet::Colide(SDL_Rect wallrect){
 
     colisions = 0;
     colide = false;
-
-    /*making it ease to read :DDD*/
 
     WallCenter.x = wallrect.x + wallrect.w/2;
     WallCenter.y = wallrect.y + wallrect.h/2;
@@ -295,15 +277,10 @@ void Bullet::Shot(){
     }
     x += velocity*sin(RAD3(angle))*direction.x;
     y += velocity*cos(RAD3(angle))*direction.y;
-
 }
 void Bullet::Render(SDL_Renderer *renderer){
-
     rect.x = x;
     rect.y = y;
     Time();
-    // SDL_SetRenderDrawColor(renderer,0,0,0,0);
-    // SDL_RenderFillRect(renderer,&rect);
-    // SDL_SetRenderDrawColor(renderer,255,255,255,150);
     SDL_RenderCopy(renderer,texture,NULL,&rect);
 }

@@ -1,8 +1,4 @@
-/*README
-Bullets: Bomboclat objcet and Minions are defined in WEapon.cpp due to them working properly */
-
 #include"Weapon.cpp"
-
 
 void Weapon::BomboclatWeaponShot(){
 

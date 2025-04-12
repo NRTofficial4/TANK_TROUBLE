@@ -46,7 +46,7 @@ Bullet BomboClatMinions(6,6);
 BomboClat BomboClatMainBullet(20,20);
 
 /*Index Weapon -2*/
-Bullet MiniGun(9,9);
+Bullet MiniGun(7,7);
 
 /*Index weapon -3*/
 TheMin Mins(15,15);
@@ -55,7 +55,7 @@ Bullet SparkBullet(6,6);
 /*Bruh i know randomnes is as darkess in my ass--------------------------------------------*/
 std::random_device rd3;
 std::mt19937 gen3(rd3());
-std::uniform_int_distribution<>distrib_W(1,1);
+std::uniform_int_distribution<>distrib_W(1,2);
 
 
 class Weapon{
@@ -195,9 +195,7 @@ void Weapon::Generate(SDL_Renderer *renderer,int x, int y){
 Weapon::Weapon(){
     Filenames.push_back("Assets/Base.png");
     Filenames.push_back("Assets/BomboClat.png");
-    Filenames.push_back("Assets/MiniGunAni.png");
-    Filenames.push_back("Assets/tank_SecurityWeapon.png");
-    //Filenames.push_back("Assets/BomboClat.png");
+    Filenames.push_back("Assets/MiniGun.png");
     srcrect.x = 0; srcrect.y = 0;
 }
 void Weapon::UpdateWeapon(SDL_Renderer *renderer){
@@ -322,6 +320,7 @@ void Weapon::Shotting(SDL_Renderer *renderer){
     }
     BaseWeaponRender(renderer);
     BomboClatWeaponRender(renderer);
+    MachineWeaponRender(renderer);
 
 }
 

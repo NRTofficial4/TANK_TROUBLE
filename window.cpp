@@ -39,7 +39,6 @@ Text text_green("fonts/free.ttf",WIN_WIDTH/2-80,-20);
 
 Weapon IconWeapnos;
 
-/*Bruh i know randomnes is as darkess in my ass--------------------------------------------*/
 std::random_device rd2;
 std::mt19937 gen2(rd2());
 std::uniform_int_distribution<>distrib2(0,CELL_NUMBER_HEIGH*CELL_NUMBER_HEIGH -1);
@@ -50,7 +49,6 @@ class Window{
 
     public:
 
-/*Comonn i know what does what*/
     SDL_Window*window;
     SDL_Renderer *renderer;
     SDL_Event event;
@@ -187,7 +185,7 @@ void Window::WindowInit(){
     bullet.LoadTexture(renderer,"Assets/Bullet.png");
     BomboClatMainBullet.LoadTexture(renderer,"Assets/Bullet.png");
     BomboClatMinions.LoadTexture(renderer,"Assets/Bullet.png");
-    // MiniGun.LoadTexture(renderer,"Assets/Bullet.png"); -- it not work properly
+    MiniGun.LoadTexture(renderer,"Assets/Bullet.png"); 
     
     tank_blue.PlayerIndex = 0;
     tank_red.PlayerIndex = 1;
@@ -270,7 +268,6 @@ void Window::GenerateIcon(){
 }
 
 void Window::TakeWapon(Tank &tank){
-    //for(int iter=0;iter<1;iter++){
     for(int iter=0;iter<IconWeapnos.Icons.size();iter++){
         IconWeapnos.Icons[iter].Colide(tank.center.x,tank.center.y);
         if(IconWeapnos.Icons[iter].colide){ 
@@ -297,8 +294,7 @@ text_green.TextRendering(renderer);
 }
 
 /*ATTENTION -Render basically emm
-make sure to not gamble with the order with a function -> 
-some shit get kinda meessy and is sensitive more then Szymon when I tell him i dont wanna watch Dorahedoro after he asked me 50 times
+make sure to not gamble with the order with a function -> idk why but it sometimes it doesnt work like it supposed to :)
 */
 void Window::Render(){
 
@@ -348,7 +344,6 @@ if((tank_blue.Killed && tank_red.Killed) || (tank_blue.Killed && tank_green.Kill
         Dead.seconds = 0;
     }
 
-/*"We had to add some skibidi in there"*/
     if(endrund) EndRund();
     
     SDL_RenderPresent(renderer);
@@ -373,13 +368,13 @@ text_red.Texture(renderer);
 text_green.Texture(renderer);
 
 
-/*Clearing, no shit on the map is left*/
+/*Clearing, the map is left*/
 
 ClearPlayer(tank_green);
 ClearPlayer(tank_blue);
 ClearPlayer(tank_red);
 
-/*Destroying Map Like Hitler did Warsa....ok not funnny*/
+/*Destroying Map */
     maze.cell.clear();
     maze.Current_cell.clear();
     maze.MazeCellInitialize();
@@ -420,11 +415,7 @@ void Window::SpawnPLayer(Tank &tank){
 
 void Window::FrameOptymalisation(){
     int Frametime = FrameStart - SDL_GetTicks();
-    if(Frametime < FrameSet){
-        SDL_Delay(FrameSet - Frametime);
-    }
-    // std::cout << frame << "\n";
-    // frame++;
+    if(Frametime < FrameSet) SDL_Delay(FrameSet - Frametime);
 }
 
 void Window::DestroyWindow(){
