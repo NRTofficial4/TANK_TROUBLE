@@ -1,7 +1,7 @@
 /*Inclued Sound effect Method */
 
 /*Sound Channels--------------------------------*/
-/*Ind order to *mixing* we need to know which channel set to which Volume :D*/
+/*Ind order to *mixing* we need to know which channel set to which Volume */
 
 /*LIST OF CHANNELS - M I X E R:-------------------------------------------------
 0 - shot base Weapon -
@@ -11,7 +11,7 @@
 4 - colide with Wall Minions || Colide with Wall MiniGunBullets
 5 - EndRundSound 
 6 - PlayerKys sound
-7 - TAnk Getting Hit by the bullets
+7 - Tank Getting Hit by the bullets
 */
 
 #include "window.cpp"

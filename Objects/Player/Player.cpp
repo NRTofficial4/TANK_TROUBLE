@@ -1,12 +1,5 @@
-/*Now that bullet colide works like 90% of the time:
-TO DO:----------------
-PLayer (Tank body) and Weapon as  separate object
-since there are going to be a lots of weapons - laser beam, machine gun, and the fucking Grenade Lancher
-of course, tank body will be a rectangle, and the Tank Weapon will be collind with the wals separatly
-if the program be to slow we can easily optymazie by looking for collisio only in a certain range of a object- easy peasy
-Weapons whichc are basically just rectangle,but positioned perfect--*/
-
 #pragma once
+
 #include<iostream>
 #include<vector>
 #include"../../SDL/include/SDL2/SDL.h"
@@ -16,7 +9,6 @@ Weapons whichc are basically just rectangle,but positioned perfect--*/
 #include"../Weapons/Weapon.cpp"  
 #include"../Weapons/BomboClat.cpp"
 #include"../Weapons/MachineGun.cpp"
-//#include"../Weapons/TheMin.cpp"
 
 #define DEGREES(x) (x*180)/M_PI;
 
@@ -82,7 +74,6 @@ class Tank{
         /*---------------------------------------*/
 
     int PlayerIndex;
-    /*GamePlay Law kinda shit---------------------*/
     /*Check if player is Killed or not (this Comment was very neccesary)*/
     bool Killed;
     /*Send signal to turn on the End rund Trigger, which clears the bullet and -> makes New Maze!!*/
@@ -91,11 +82,10 @@ class Tank{
     /*after Rund is ended, player will be localized into random Position---*/
     float SpawnPoint;
 
-    //I belive you are smart enaugh to ques 
+    //Each player have points, player what have the most points win the game 
     int Points;
     bool notkilled = true;
     /*-------------------------------------------*/
-
 
     /*position of the real corner position */
     Point topleft,topright,bottonleft,bottonright,center,BulletCenter;
@@ -199,7 +189,7 @@ class Tank{
     int MinIndex;
     //--------------------------------------------------------------------------
 
-    //Keep the T i m i n g  guys!!
+    //Keep the T i m i n g 
     int FramesWhileDead;
     int SecondsWhileDead;
     
@@ -357,8 +347,6 @@ if(VectorCenter[1] < 0 && NormVector[MinIndex][1] >= 0){
     NormVector[MinIndex][1] = -NormVector[MinIndex][1];
 }
 
-// MTV[0] = speed*NormVector[MinIndex][0]*fabs(sin(RAD(rotation)));
-// MTV[1] = speed*NormVector[MinIndex][1]*fabs(cos(RAD(rotation)));
 
 MTV[0] = fabs(MinDotDistance)*NormVector[MinIndex][0];
 MTV[1] = fabs(MinDotDistance)*NormVector[MinIndex][1];
@@ -398,55 +386,37 @@ void Tank::MauseMove(){
         }
 MausePlayerLength = sqrt((MausePos.y - center.y)*(MausePos.y - center.y) + (MausePos.x - center.x)*(MausePos.x - center.x));
 
-/*IDK why but this shit reques some bulshit mechanism ------ b u l s h i t -----*/
-/*Ok it makes sense, becose sin is 0 for 0 and for 180 degres, so ok ,Math is cool aj gues --------*/
-if(MausePos.y <= center.y){
-     DestRotation = -DEGREES(asin((MausePos.x - center.x)/MausePlayerLength));
-}
-if(MausePos.y > center.y) {
-    DestRotation = 180-DEGREES(asin((center.x - MausePos.x)/MausePlayerLength));
-}
 
+if(MausePos.y <= center.y) DestRotation = -DEGREES(asin((MausePos.x - center.x)/MausePlayerLength));
 
-if(PrevDest-DestRotation <= -340){
-    rotation += 360;
-    //std::cout << "PYK!!!\n";
-} 
+if(MausePos.y > center.y)  DestRotation = 180-DEGREES(asin((center.x - MausePos.x)/MausePlayerLength));
+
+if(PrevDest-DestRotation <= -340) rotation += 360;
 if(PrevDest-DestRotation >= 340) rotation -= 360;
-
-//std::cout << PrevDest - DestRotation << "\n";
-
-// if(abs(DestRotation - rotation > abs(DestRotation + rotation))) rotation -= TANK_TURNING_SPEED;
-// if(abs(DestRotation - rotation < abs(DestRotation + rotation))) rotation += TANK_TURNING_SPEED;
 
 if(DestRotation > rotation) rotation+=TANK_TURNING_SPEED;
 if(DestRotation < rotation) rotation-=TANK_TURNING_SPEED;
 
-//std::cout <<"  DestRot: " << DestRotation << " rot: " << rotation << "\n";
-
 PrevDest = DestRotation;
 
+    if(MausePlayerLength > rect.h/2){
+        if(weapon.IndexWeapon != 3) velocity = -speed;
+        else velocity = -1.5*speed;
+    }
+    else{
+        velocity = 0;
+    }
 
-        if(MausePlayerLength > rect.h/2){
-            if(weapon.IndexWeapon != 3) velocity = -speed;
-            else velocity = -1.5*speed;
-        }
-        else{
-            velocity = 0;
-        }
-
-        x += velocity * sin(RAD(rotation));
-        y += velocity * cos(RAD(rotation));
+    x += velocity * sin(RAD(rotation));
+    y += velocity * cos(RAD(rotation));
 
     /*-----"We add some newton here"----- -> push back the player if shoted ----*/
-        x += weapon.OneAppleaDayKeepsTheDoctorAway* sin(RAD(rotation));
-        y += weapon.OneAppleaDayKeepsTheDoctorAway* cos(RAD(rotation));
+    x += weapon.OneAppleaDayKeepsTheDoctorAway* sin(RAD(rotation));
+    y += weapon.OneAppleaDayKeepsTheDoctorAway* cos(RAD(rotation));
         
     rect.x = x;
     rect.y = y;
     }
-
-
      RectDraw();
 }
 
@@ -476,8 +446,8 @@ void Tank::move(int kup, int kdown, int krp, int krm)
         y += velocity * cos(RAD(rotation));
 
     /*-----"We add some newton here"----- -> push back the player if shoted ----*/
-        x += weapon.OneAppleaDayKeepsTheDoctorAway* sin(RAD(rotation));
-        y += weapon.OneAppleaDayKeepsTheDoctorAway* cos(RAD(rotation));
+    x += weapon.OneAppleaDayKeepsTheDoctorAway* sin(RAD(rotation));
+    y += weapon.OneAppleaDayKeepsTheDoctorAway* cos(RAD(rotation));
         
     rect.x = x;
     rect.y = y;

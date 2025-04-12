@@ -5,11 +5,6 @@
 #include<vector>
 #include"MazeSize.hpp"
 
-/*to do -> Change The Maze Generating Algorythm -> makes some breakes
-1)Run THe Algoryhm and then break some walls
-2)change the algorythm z
-----------------------*/
-
 
 struct Wall{SDL_Rect rect;};
 
@@ -59,22 +54,13 @@ class Cell{
 };
 
 void Cell::WallMake(){
-
-    if(!Path[0]){
-    Wall.push_back({corners[0][0],corners[0][1],CELL_SIZE,CELL_WALL_THICKNESS});
-    }
-    if(!Path[1]){
-    Wall.push_back({corners[0][0]+CELL_SIZE,corners[0][1],CELL_WALL_THICKNESS,CELL_SIZE+CELL_WALL_THICKNESS});
-    }
-    if(!Path[2]){
-    Wall.push_back({corners[0][0],corners[0][1]+CELL_SIZE,CELL_SIZE+CELL_WALL_THICKNESS,CELL_WALL_THICKNESS});
-    }
-    if(!Path[3]){
-    Wall.push_back({corners[0][0],corners[0][1],CELL_WALL_THICKNESS,CELL_SIZE});
-    }
+    if(!Path[0]) Wall.push_back({corners[0][0],corners[0][1],CELL_SIZE,CELL_WALL_THICKNESS});
+    if(!Path[1]) Wall.push_back({corners[0][0]+CELL_SIZE,corners[0][1],CELL_WALL_THICKNESS,CELL_SIZE+CELL_WALL_THICKNESS});
+    if(!Path[2]) Wall.push_back({corners[0][0],corners[0][1]+CELL_SIZE,CELL_SIZE+CELL_WALL_THICKNESS,CELL_WALL_THICKNESS});
+    if(!Path[3]) Wall.push_back({corners[0][0],corners[0][1],CELL_WALL_THICKNESS,CELL_SIZE});
 }
 
-/*Here we "positioning a cell "*/
+/*Here we "positioning a cell " on a window*/
 void Cell::CellMake(){
 
     //top left
@@ -95,9 +81,7 @@ void Cell::CellMake(){
 }
 
 void Cell::CellDraw(SDL_Renderer *renderer){
-
     SDL_SetRenderDrawColor(renderer,130,130,130,255);
-
     if(!Path[0]){
     rect = {corners[0][0],corners[0][1],CELL_SIZE,CELL_WALL_THICKNESS};
     SDL_RenderFillRect(renderer,&rect);
@@ -116,6 +100,5 @@ void Cell::CellDraw(SDL_Renderer *renderer){
     rect = {corners[0][0],corners[0][1],CELL_WALL_THICKNESS,CELL_SIZE};
     SDL_RenderFillRect(renderer,&rect);
     }
-    
     SDL_SetRenderDrawColor(renderer,255,255,255,255);
 }

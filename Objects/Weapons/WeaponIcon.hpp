@@ -30,9 +30,6 @@ class WeaponIcon{
         void Render(SDL_Renderer *renderer);
         void Load(SDL_Renderer *renderer);
 
-
-        // //select type of weapon which icon points to (Icon is a pointer wtf)
-        // void SelectType();
     private:
 
     /*animation ---*/
@@ -42,6 +39,7 @@ class WeaponIcon{
 WeaponIcon::WeaponIcon(){
     filenames.push_back("digiti");
     filenames.push_back("Assets/BomboClatIcon.png");
+    filenames.push_back("Assets/MiniGunIcon.png");
 }
 
 void WeaponIcon::Load(SDL_Renderer *renderer){
